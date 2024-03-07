@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Transactions;
 
 namespace InterfaceExercise
 {
@@ -6,6 +9,26 @@ namespace InterfaceExercise
     {
         static void Main(string[] args)
         {
+            var car = new Car();
+            var truck = new Truck();
+            var suv = new SUV();
+            var vehicles = new List<IVehicle>() {car, truck, suv};
+
+            Random random = new Random();
+            bool result = random.Next(2) == 0;
+
+            Random random1 = new Random();
+            bool result1 = random1.NextDouble() < 0.5;
+
+            foreach (var vehicle in vehicles)
+            {
+                vehicle.Drive();
+                vehicle.ChangeGears(result);
+                vehicle.Reverse();
+                vehicle.ChangeGears(result1);
+                vehicle.Park();
+                Console.WriteLine("-----------------------");
+            }
             //TODO Be sure to follow BEST PRACTICES when creating classes and interfaces
 
             //Create 2 Interfaces called IVehicle & ICompany
